@@ -1,5 +1,5 @@
 from socket import *
-from thread import *
+from _thread import *
 
 fo = open("MyServerHistory.txt","a")
 s = socket(AF_INET, SOCK_STREAM)
@@ -8,7 +8,7 @@ ip = '127.0.0.1'
 port = 1123
 
 s.bind((ip, port))
-print 'server is Stared at:',ip,':',port
+print('server is Stared at:',ip,':',port)
 
 s.listen(8)
 
@@ -20,7 +20,7 @@ d=''
 def Server(c, addr, users, addres):
     while True:
         msg = c.recv(1024).decode("utf-8")
-        print addr,':',msg
+        print(addr,':',msg)
         #-------files write---------
         d = str(addr)
         fo.write('\n')
@@ -43,9 +43,9 @@ while True:
     
         start_new_thread(Server, (conn, addr, users, addres))
     
-        print 'New connection: ',addr
+        print('New connection: ',addr)
     except Exception as e:
-        print 'Error: {e}'
+        print(f'Error: {e}')
 fo.close()
 s.close()
 conn.close()
